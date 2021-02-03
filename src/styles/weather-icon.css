@@ -15,7 +15,7 @@
     background: #23b7e5;
     border-radius: 8px;
 } */
-
+.clear::before,
 .sunny:before {
     content: "";
     position: absolute;
@@ -29,6 +29,7 @@
     box-shadow: 0 0 20px #ff0;
     z-index: 2;
 }
+.clear::before,
 .sunny:after {
     content: "";
     position: absolute;
@@ -75,9 +76,9 @@
         transform: scale(1);
     }
 }
-.cloudy:before,
-.rainy:before,
-.snowy:before {
+.clouds:before,
+.rain:before,
+.snow:before {
     content: "";
     position: absolute;
     top: 30%;
@@ -97,7 +98,7 @@
     -o-transform: scale(0.7);
 }
 
-.cloudy:before {
+.clouds:before {
     animation: cloudMove 1s linear infinite;
     transform: scale(0.7)!important;
     -webkit-transform: scale(0.7)!important;
@@ -129,7 +130,7 @@
         -o-transform: translate(-50%, -40%);
 }
 }
-.rainy:after {
+.rain:after {
     content: "";
     position: absolute;
     top: 30%;
@@ -164,7 +165,7 @@
         -o-transform: translate(8px, 24px) rotate(10deg);
 }
 }
-.snowy:after {
+.snow:after {
     content: "";
     position: absolute;
     top: 30%;
