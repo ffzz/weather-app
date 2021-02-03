@@ -31,42 +31,44 @@ function App() {
 						<div className="card__bottom-left">
 							<div className="twitter__head">
 								<div className="twitter__headline ">Twitter Feed</div>
-								<div className="twitter__weather-"></div>topic
-                		</div>
+								<div className="twitter__weather-topic">topic</div>
+                			</div>
 							<ul className="twitter__list">
 								<li className="twitter__content"></li>
 							</ul>
+							<button className='twitter__next'>next</button>
 						</div>
+						
 						<ul className="card__bottom-right">
 							<li className="weather__item ">
 								<p className="weather__weekday">mon</p>
 								<span className="weather__icon sunny"></span>
-								<p className="weather__celsius"></p>
-								<p className="weather__description"></p>
+								<p className="weather__celsius">9</p>
+								<p className="weather__description">sunny</p>
 							</li>
 							<li className="weather__item">
 								<p className="weather__weekday">tue</p>
 								<span className="weather__icon cloudy"></span>
-								<p className="weather__celsius"></p>
-								<p className="weather__description"></p>
+								<p className="weather__celsius">10</p>
+								<p className="weather__description">cloudy</p>
 							</li>
 							<li className="weather__item">
 								<p className="weather__weekday">wen</p>
 								<span className="weather__icon rainy"></span>
-								<p className="weather__celsius"></p>
-								<p className="weather__description"></p>
+								<p className="weather__celsius">11</p>
+								<p className="weather__description">rainy</p>
 							</li>
 							<li className="weather__item">
 								<p className="weather__weekday">thu</p>
 								<span className="weather__icon snowy"></span>
-								<p className="weather__celsius"></p>
-								<p className="weather__description"></p>
+								<p className="weather__celsius">12</p>
+								<p className="weather__description">sonwy</p>
 							</li>
 							<li className="weather__item">
 								<p className="weather__weekday">fri</p>
-								<span className="weather__icon "></span>
-								<p className="weather__celsius"></p>
-								<p className="weather__description"></p>
+								<span className="weather__icon cloudy"></span>
+								<p className="weather__celsius">25</p>
+								<p className="weather__description">cloudy</p>
 							</li>
 						</ul>
 					</section>
