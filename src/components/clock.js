@@ -1,11 +1,11 @@
 import React from 'react';
-// import './Clock.css'
+import '../styles/Clock.scss'
 
 
 class Clock extends React.Component {
     constructor(props) {
         super(props)
-        
+
         this.initTime = this.getClockWorldwide(props.timeZone)
         this.state = {
             date: this.initTime.date,
@@ -13,14 +13,14 @@ class Clock extends React.Component {
             minute: this.initTime.minute,
             second: this.initTime.second
         }
-        
+
     }
-    
+
     getClockWorldwide = (timeZone) => {
 
         // get local date and time
         let localeClock = new Date();
-        
+
         //formate the time and date 
         let options = { weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h24', timeZone: 'Australia/Sydney' }
 
@@ -53,6 +53,9 @@ class Clock extends React.Component {
 
     updateTime = () => {
         this.timer = setInterval(() => {
+            // console.log(this.props.continent, this.props.city)
+            // let timeZone = `${this.props.continent}/${this.props.city}`
+            // console.log(timeZone)
             this.dateTime = this.getClockWorldwide(this.props.timeZone)
             this.setState({
                 date: this.dateTime.date,
@@ -73,22 +76,17 @@ class Clock extends React.Component {
 
     render() {
         return (
-            <div className="city-clock">
-                <div className="city-clock__location">
-                    {this.props.city}
-                </div>
-                <div className="clock">
-                    <div className="clock__date">
-                        {this.state.date}
-                    </div>
-                    <ul className="clock__wrapper">
-                        <li className="clock__hour">{this.state.hour}</li>
-                        <li>:</li>
-                        <li className="clock__minute">{this.state.minute}</li>
-                        <li>:</li>
-                        <li className="clock__second">{this.state.second}</li>
-                    </ul>
-                </div>
+            <div className="clock">
+                <ul className="clock__wrapper">
+                    <li className="clock__hour">{this.state.hour}</li>
+                    <li> : </li>
+                    <li className="clock__minute">{this.state.minute}</li>
+                    <li> : </li>
+                    <li className="clock__second">{this.state.second}</li>
+                </ul>
+                <div className="clock__date">
+                    {this.state.date}
+                </div>              
             </div>
         )
     }

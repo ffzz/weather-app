@@ -1,25 +1,34 @@
 import React from 'react'
+import Clock from './clock'
+
 
 export default function Top(props) {
-    const {city, humidity, wind, temp, weather} = props
-    
+    const {continent, city, humidity, wind, temp, weather} = props
+    // let cityName = city.replace(" ","_")
+    // console.log(city, continent)
+    // const timeZone = `${continent}/${city}`
+    // console.log(timeZone)
     return (
         <section className="card__top">
             <div className="city__name"> {city} </div>
+            <Clock city={city} continent={continent} />
             <div className='card__top-left'>
-                <div className="city__temperature">{temp}</div>
-                <div className="city__weather">{weather} </div>
-                <div className="city__humidity-wind">
-                    <div className="city__humidity">
+                <h1 className="city__temperature">{temp}</h1>
+                <p className="city__weather">{weather} </p>
+                <ul className="city__humidity-wind">
+                    <li className="city__humidity">
                         <p>humidity</p>
                         <span className="city__humidity-value">{humidity}</span>
-                    </div>
-                    <div className="city__wind">
+                    </li>
+                    <li className="city__wind">
                         <p>wind</p>
                         <span className="city__wind-value"> {wind} </span>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </div>
         </section>
     )
 }
+
+
+

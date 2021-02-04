@@ -1,6 +1,9 @@
 @import "normalize.css";
 @import "reset.css";
 @import 'weather-icon.css';
+@import '_media-query.scss';
+
+
 
 html,
 body {
@@ -29,7 +32,7 @@ body {
 
 .header {
     width: 100%;
-    padding: 1vh;
+    padding: 2vh;
     font-size: 2rem;
     height: 3rem;
     line-height: 3rem;
@@ -37,8 +40,8 @@ body {
     // background-color: #fff;
     &__menu {
         position: absolute;
-        left: 10px;
-        top: 10px;
+        left: 20px;
+        top: 20px;
         height: 2.5rem;
         width: 2.5rem;
         background: url(../img/menu.svg);
@@ -61,15 +64,27 @@ body {
     min-width: 375px;
     height: 70vh;
     min-height: 37rem;
-    margin: 5vh auto;
+    margin: 7vh auto;
     // margin: 12vh 0;
     padding: 1rem;
     background-color: #000;
     box-shadow: 3px 3px 7px 5px rgba($color: #000000, $alpha: 0.2);
+    // background: url(../img/bg-sea2.png) no-repeat;
+    // background-size: cover;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+
+    @include MQ(L) {
+        width: 90vw;
+        height: 120vh;
+    }
+    @include MQ(S) {
+        width: 100vw;
+    }
     &__top {
         position: relative;
         width: 100%;
         height: 47%;
+        max-height: 40vh;
         border-top-left-radius: 7px;
         border-top-right-radius: 7px;
         background-size: 90%;
@@ -77,23 +92,30 @@ body {
         border-bottom: 2px solid #fff;
         text-transform: uppercase;
         color: #fff;
+        // background-color: rgba($color: #fff, $alpha: 0.3);
+        @include MQ(L) {
+            height: 30%;
+        }
         &-left {
             width: 40%;
             height: 70%;
             position: absolute;
             top: 10%;
             left: 2%;
-            // border: 1px solid #fff;
             text-align: center;
             letter-spacing: 0.2rem;
+            @include MQ(M){
+                left: 5%;
+                width: 55%;
+            }
         }
         .city {
             &__name {
                 position: absolute;
                 top: 15%;
-                right: 10%;
+                left: 70%;
                 font-size: 1.5rem;
-                letter-spacing: 4px;
+                letter-spacing: 3px;
                 color: #fff;
                 &::after {
                     content: "";
@@ -104,6 +126,11 @@ body {
                     height: 2px;
                     background-color: #fff;
                 }
+                @include MQ(M){
+                    left:65%;
+                    font-size: 1.3rem;
+                    letter-spacing: 3px;
+                }
             }
             &__temperature {
                 font-size: 5rem;
@@ -112,10 +139,10 @@ body {
                 &::after {
                     content: "";
                     position: absolute;
-                    right: 25%;
+                    right: 20%;
                     top: 0;
-                    width: 25px;
-                    height: 25px;
+                    width: 20px;
+                    height: 20px;
                     border: 4px solid #fff;
                     border-radius: 100%;
                     -webkit-border-radius: 100%;
@@ -128,6 +155,7 @@ body {
                 font-size: 1.4rem;
             }
             &__humidity-wind {
+                width: 100%;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -137,7 +165,6 @@ body {
             &__humidity {
                 border-right: 2px solid #fff;
                 flex-grow: 1;
-
                 &-value {
                     margin-top: 1rem;
                     display: block;
@@ -158,18 +185,33 @@ body {
         display: flex;
         width: 100%;
         height: 53%;
-        color: #ddd;
-        // background-color: red;
+        color: #fff;
+        // background-color: rgba($color: #000000, $alpha: 0.5);
+        @include MQ(L) {
+            flex-direction: column-reverse;
+            height: 75vh;
+        }
     }
     &__bottom-left {
+        height: 100%;
         flex: 2;
         position: relative;
         padding-top: 3%;
-        // border: 2px solid #fff;
+        display: flex;
+        flex-direction: column;
         .twitter {
             &__head {
-                position: relative;
                 display: flex;
+                @include MQ(L) {
+                    justify-content: center;
+                }
+            }
+            &__headline {
+                position: relative;
+                font-size: 1.3rem;
+                padding-top: 5px;
+                padding-left: 60px;
+                padding-right: 20px;
                 &::before {
                     content: '';
                     position: absolute;
@@ -179,14 +221,7 @@ body {
                     height: 2.5rem;
                     background: url(../img/twitter.svg);
                     background-size: contain;
-                    
                 }
-            }
-            &__headline {
-                font-size: 1.3rem;
-                padding-top: 5px;
-                padding-left: 60px;
-                padding-right: 20px;
             }
             &__weather-topic {
                 font-size: 0.8rem;
@@ -194,35 +229,40 @@ body {
 
             }
             &__list {
-                width: 80%;
+                width: 100%;
                 height: 80%;
                 // background-color: #fff;
             }
             &__next {
-                position: relative;
-                width: 80%;
-                height: 20px;
+                width: 100%;
                 display:flex;
                 justify-content: center;
-                border: none;
-                background-color: transparent;
-                color:#fff;
-                font-size: 1rem;
-                // margin: 0 auto;
-                text-transform: uppercase;
-                letter-spacing: 0.1rem;
-                &::after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    right: 90px;
-                    width: 0;
-                    height: 0;
-                    border-style: solid;
-                    border-width: 0.5rem;
-                    border-color: transparent transparent transparent #ee7752;
-                    font-size: 0;
-                    line-height: 0;
+                align-items: center;
+                &-button {
+                    position: relative;
+                    height: 20px;
+                    border: none;
+                    background-color: transparent;
+                    color:#fff;
+                    font-size: 1rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.1rem;
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 2px;
+                        right: -20px;
+                        width: 0;
+                        height: 0;
+                        border-style: solid;
+                        border-width: 0.5rem;
+                        border-color: transparent transparent transparent #ee7752;
+                        font-size: 0;
+                        line-height: 0;
+                    }
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
             }
         }
@@ -233,7 +273,10 @@ body {
             top:10%;
             width: 3px;
             height: 80%;
-            background-color: #fff;
+            background-color:#fff;
+            @include MQ(L){
+                display: none;
+            }
         }
     }
     &__bottom-right {
@@ -241,6 +284,9 @@ body {
         display: flex;
         justify-content: space-evenly;
         text-transform: uppercase;
+        @include MQ(L) {
+            margin-top: 30px;
+        }
         .weather {
             &__item {
                 width: 100%;
@@ -259,6 +305,9 @@ body {
                 height: 50%;
                 // background: #23b7e5;
                 border-radius: 8px;
+                // @include MQ(L) {
+                //     padding: 20px 0;
+                // }
             }
             &__celsius {
                 position: relative;
@@ -277,7 +326,7 @@ body {
                     -moz-border-radius: 100%;
                     -ms-border-radius: 100%;
                     -o-border-radius: 100%;
-}
+                }
             }
             &__description {
                 margin-top: 1rem;

@@ -11,7 +11,9 @@ export default class WeatherList extends Component {
                 <ul className="twitter__list">
                     <li className="twitter__content"></li>
                 </ul>
-                <button className='twitter__next'>next</button>
+                <div className='twitter__next'>
+                <button className='twitter__next-button'>next</button>
+                </div>
             </div>
         )
     }

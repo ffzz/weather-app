@@ -11,22 +11,40 @@ export default class Main extends Component {
     
         this.state = {
              city: '',
+             continent: '',
              temperature: '',
              wind:'',
              humidity: '',
              forecastDataArray: ''
         }
     }
+    // get city name by user's IP address
+    //问题: 如何从子组件传数据到父组件????
+    getLocation = async () => {
+        const res = await Axios.get('https://extreme-ip-lookup.com/json/')
+        console.log(res)
+        const { city, country, query, region, continent } = res.data
+        const locationData = {
+            IP: query,
+            city: city,
+            region: region,
+            country: country,
+            continent: continent,
+        }         
+        return locationData
+    }
 
+    // get forecast data by city
     getCityWeatherData = async () => {
-
-        const API_key = 'c8e76c9b4fa36112b0d8aff693cee1fc';
-        const city = 'Sydney';
-        const api = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_key}`;
+        let ipData = this.getLocation()
+        const city = (await ipData).city
+        const country = (await ipData).country
+        const API_key = '53d459b206b0c32ca2653d9c7578dfb1';
+        const api = `http://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${API_key}`;
 
         const res = await Axios.get(api)
 
-        //如何挑选出想要的数据? 而不是手动找出来
+        //如何遍历挑选出想要的数据? 而不是手动找出来
         let forecastData = [
             res.data.list[12], 
             res.data.list[20], 
@@ -48,10 +66,11 @@ export default class Main extends Component {
             fiveDaysForecastData.push(forecastDataItem)
         }
 
-        //如何把数据遍历出来?
+       
         const { main: { humidity, temp }, wind: { speed }, weather } = res.data.list[4]
 
         this.setState({
+            continent: (await ipData).continent,
             city: city,
             humidity: humidity + ' %',
             wind: speed + " km/s",
@@ -69,11 +88,12 @@ export default class Main extends Component {
     
     
     render() {
-        const {city, humidity, wind, temp, weather, forecastDataArray} = this.state
+        const {city, continent, humidity, wind, temp, weather, forecastDataArray} = this.state
         return (
             <main>
                 <div className="card">
                     <Top 
+                        continent={continent}
                         city={city}
                         temp={temp}
                         humidity={humidity}

@@ -6,9 +6,7 @@ const WeatherList = (props) => {
     console.dir(props.data)
 
     let data = Array.from(props.data)
-    let items = data.map((item, index) => 
-    <WeatherItem {...item} key={index} />
-    )
+    let items = data.map((item, index) => <WeatherItem {...item} key={index} />)
 
     // let icon = "01d"
     // const url = `http://openweathermap.org/img/w/${icon}.png`;
